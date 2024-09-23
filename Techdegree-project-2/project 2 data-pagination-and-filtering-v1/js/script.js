@@ -12,7 +12,7 @@ For assistance:
 */
 
 const studentPerPage = 9;
-
+const searchInput = document.querySelector("#search");
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -84,13 +84,26 @@ function addPagination(list) {
    });
 }
 
-/*searchInput.addEventListener('keyup', () => {
-   const newData = [];
+searchInput.addEventListener("keyup", () => {
+   const newUserData = [];
    const userInput = searchInput.value.toLowerCase();
 
-
+   for(let i = 0; i < data.length; i++){
+      if (typeof data[i].name === 'string')
+    
+  if (userName.includes(userInput)){
+    newUserData.push(data[i]);
+   }
+   const userName = data[i].name.toLowerCase();
+}
+   if (newUserData.length > 0){
+    studentList(newUserData); // will pass new user data into the student item class in html
+    showPage(newUserData, 1); //will pass newUserData array and return the first page
+   } else {
+      studentList.innerHTML = '<p>No data found...</p>'
+   }
 });
-*/
+
 
 
 addPagination(data);
