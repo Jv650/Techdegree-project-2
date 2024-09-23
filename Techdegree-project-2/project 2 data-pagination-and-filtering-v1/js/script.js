@@ -23,6 +23,7 @@ This function will create and insert/append the elements needed to display a "pa
    const studentList = document.querySelector('.student-list'); // maybe? const studentList = document.getElementsByClassName('student-list'); 
    studentList.innerHTML = ""; 
    
+   // iterate of list to input user info
    for (let i = 0; i < list.length; i+=1) {
       if (i >= startIndex && i < endIndex) {
       const studentItem = `
@@ -56,8 +57,8 @@ function addPagination(list) {
    const linkList = document.querySelector('.link-list');
    linkList.innerHTML = '';
    
-
-   for (let i = 1; i <= numOfPages; i+=1) { 
+// add buttons for number of pages using for loop 
+   for (let i = 1; i <= numOfPages; i++) { 
       const button = `
          <li>
             <button type="button">${i}</button>
@@ -65,17 +66,17 @@ function addPagination(list) {
       `;
       linkList.insertAdjacentHTML('beforeend', button);
    }
-
+//first button is active 
       const firstButton = linkList.querySelector('button'); //linkList.querySelector('button').className = 'active';
       if (firstButton) {
-         firstButton.className = 'active';
+         firstButton.classList.add('active');
    }
-   
+ //will listen for a click 
    linkList.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON'){
-      document.querySelector('.link-list','.active').classList.remove('active');
-      firstButton.className = 'active';
-      e.target.className = 'active';
+      document.querySelector('.link-list .active').classList.remove('active');
+      //firstButton.className = 'active';
+      e.target.classList.add('active');
 
       const page = 
       parseInt(e.target.textContent);
@@ -84,7 +85,7 @@ function addPagination(list) {
    });
 }
 
-searchInput.addEventListener("keyup", () => {
+/*searchInput.addEventListener("keyup", () => {
    const newUserData = [];
    const userInput = searchInput.value.toLowerCase();
 
@@ -103,7 +104,7 @@ searchInput.addEventListener("keyup", () => {
       studentList.innerHTML = '<p>No data found...</p>'
    }
 });
-
+*/
 
 
 addPagination(data);
